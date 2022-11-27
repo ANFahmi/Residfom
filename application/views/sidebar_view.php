@@ -6,7 +6,7 @@
         <!-- Sidebar user panel -->
 
         <ul class="sidebar-menu" data-widget="tree">
-            <?php if ($this->session->userdata('level') == 'Petugas') { ?>
+            <?php if ($this->session->userdata('level') == 'Admin') { ?>
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <li class="header">OPTION</li>
                 <li class="<?php if ($this->uri->uri_string() == 'dashboard') {
