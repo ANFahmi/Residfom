@@ -12,7 +12,7 @@ class Userminor extends CI_Controller
 		$this->load->model('M_Admin');
 		$this->load->model('m_tps');
 		$this->load->library(array('cart'));
-		if ($this->session->userdata('masuk_perpus') != TRUE) {
+		if ($this->session->userdata('laman') != TRUE) {
 			$url = base_url('login');
 			redirect($url);
 		}
