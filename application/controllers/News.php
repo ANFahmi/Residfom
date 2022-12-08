@@ -43,6 +43,7 @@ class News extends CI_Controller
 	{
 		$where = array('id' => $id);
 		$data['news'] = $this->m_news->edit_news($where, 'tb_news')->result();
+		$this->data['idbo'] = $this->session->userdata('ses_id');
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);
 		$this->load->view('news/update', $data);

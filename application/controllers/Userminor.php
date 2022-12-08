@@ -11,6 +11,7 @@ class Userminor extends CI_Controller
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_Admin');
 		$this->load->model('m_gis');
+		$this->load->model('m_news');
 		$this->load->library(array('cart'));
 		if ($this->session->userdata('laman') != TRUE) {
 			$url = base_url('login');
@@ -36,12 +37,14 @@ class Userminor extends CI_Controller
 
 	public function index()
 	{
+		$this->load->model('m_news');
+		$data["news"] = $this->m_news->get_news();
 		$this->data['idbo'] = $this->session->userdata('ses_id');
 		$this->data['title_web'] = 'Dashboard ';
 		$this->data['count_pengguna'] = $this->db->query("SELECT * FROM tbl_login")->num_rows();
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);
-		$this->load->view('user_minor/user_view', $this->data);
+		$this->load->view('user_minor/user_view', $data);
 		$this->load->view('footer_view', $this->data);
 	}
 
@@ -68,6 +71,18 @@ class Userminor extends CI_Controller
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);
 		$this->load->view('GIS/gis_view', $this->data);
+		$this->load->view('footer_view', $this->data);
+	}
+
+	public function detail($slug)
+	{
+		$this->load->model('m_news');
+		$data["news_item"] = $this->m_news->get_news($slug);
+		$this->data['idbo'] = $this->session->userdata('ses_id');
+
+		$this->load->view('header_view', $this->data);
+		$this->load->view('sidebar_view', $this->data);
+		$this->load->view('user_minor/detail', $data);
 		$this->load->view('footer_view', $this->data);
 	}
 }
