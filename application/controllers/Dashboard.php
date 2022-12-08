@@ -32,12 +32,14 @@ class Dashboard extends CI_Controller
 	 */
 	public function index()
 	{
+		$this->load->model('m_news');
+		$data["news"] = $this->m_news->get_news();
 		$this->data['idbo'] = $this->session->userdata('ses_id');
 		$this->data['title_web'] = 'Dashboard ';
 		$this->data['count_pengguna'] = $this->db->query("SELECT * FROM tbl_login")->num_rows();
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);
-		$this->load->view('dashboard_view', $this->data);
+		$this->load->view('dashboard_view', $data);
 		$this->load->view('footer_view', $this->data);
 	}
 }

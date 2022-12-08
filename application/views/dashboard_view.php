@@ -5,6 +5,7 @@
 } ?>
 <!-- Content Wrapper. Contains page content -->
 <!-- Content Header (Page header) -->
+
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
@@ -35,19 +36,24 @@
         </div>
 
         <div class="col-xs-12">
-          <div class="small-box bg-yellow" style="height: 37rem;">
-            <div class="inner">
-              <h3>Announcement</h3>
-              <p>Hello! This is a generator for text fonts of the "cool" variety. I noticed people were trying to find a generator like fancy letters, but were ending up on actual font sites rather than generators of copy-paste text like this one. So currently this is basically a duplicate of the above, but I think I'll try to collect a few more "cool" text fonts, like the old enlgish one, and specialise this a bit.
-                If you're wondering how one produces cool text fonts like you see above, it's fairly simple (but maybe not what you'd expect). Basically, the text that gets generated isn't actually a font - it's a bunch of symbols that are in the unicode standard. You're reading symbols that are in the unicode standard right now - the alphabet is a part of it, as are all the regular symbols on your keyboard: !@#$%^&*() etc.
-                So the difference is, these rad "fonts" that are produces, just don't happen to appear on your keyboard - there's not enough room. The unicode standard has more than 100,000 symbols defined in it. That's a lot of symbols. And amongst those symbols are many different "alphabets" - some of which this translator is able to produce</p>
+          <?php foreach ($news as $news_item) : ?>
+            <div class="small-box bg-yellow" style="height: 37rem;">
+              <div class="inner">
+                <h3><a href="<?= site_url("news/detail/" . $news_item['slug']) ?>">
+                    <?= $news_item['title']; ?></a></h3>
+                <p><?= $news_item['body']; ?></p>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
+          <?php endforeach ?>
+        </div>
+        <div class="card-footer clearfix">
+          <a href="news/tambah"><button type="button" class="btn btn-primary float-right"> Add news </button></a>
         </div>
 
       </div>
     </div>
   </section>
+
 </div>
 <!-- /.content -->

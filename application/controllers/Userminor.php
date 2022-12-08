@@ -10,7 +10,7 @@ class Userminor extends CI_Controller
 		$this->data['CI'] = &get_instance();
 		$this->load->helper(array('form', 'url'));
 		$this->load->model('M_Admin');
-		$this->load->model('m_tps');
+		$this->load->model('m_gis');
 		$this->load->library(array('cart'));
 		if ($this->session->userdata('laman') != TRUE) {
 			$url = base_url('login');
@@ -62,10 +62,8 @@ class Userminor extends CI_Controller
 	{
 		$this->data['idbo'] = $this->session->userdata('ses_id');
 
-		$this->data['denda'] =  $this->db->query("SELECT * FROM tbl_biaya_denda ORDER BY id_biaya_denda DESC");
 
-
-		$this->data['tps'] = $this->m_tps->get_all_data();
+		$this->data['tps'] = $this->m_gis->get_all_data();
 		$this->data['title_web'] = ' GIS ';
 		$this->load->view('header_view', $this->data);
 		$this->load->view('sidebar_view', $this->data);

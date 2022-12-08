@@ -73,7 +73,7 @@
     var data = [
         <?php foreach ($tps as $key => $value) { ?> {
                 "lokasi": [<?= $value->latitude; ?>, <?= $value->longitude; ?>],
-                "nama_tps": "<?= $value->nama_tps; ?>"
+                "nama": "<?= $value->nama; ?>"
             },
         <?php } ?>
     ];
@@ -121,13 +121,13 @@
 
     ////////////populate map with markers from sample data
     for (i in data) {
-        var nama_tps = data[i].nama_tps, //value searched
+        var nama = data[i].nama, //value searched
             lokasi = data[i].lokasi, //position found
             marker = new L.Marker(new L.latLng(lokasi), {
-                title: nama_tps,
+                title: nama,
                 icon: icon1
             }); //se property searched
-        marker.bindPopup('Nama TPS: ' + nama_tps);
+        marker.bindPopup('Nama Lokasi: ' + nama);
         markersLayer.addLayer(marker);
     }
 </script>
